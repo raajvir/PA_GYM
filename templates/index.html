@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block title %}
+List of medical appliances
+{% endblock %}
+
+{% block main %}
+<br>
+    <script>
+        function hideDiv() {
+            var x = document.getElementById("widget");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+    <!-- <br> -->
+    </div>
+    <div>
+        {% for product in products %}
+        <div class="prodContainer">
+            <div class="left">
+                <h2><b style="font-size: 1.25em; font-family: 'favoritextb';">Available at:</b> <p>{{ product[6] }}. <a href="https://www.google.com/maps/search/{{ product[6] }}">Visit them now.</a></p></h2>
+                <div class="stock" style="top: 0; display: flex; color: grey; background-color: black; width: max-content; padding: 0.3em; padding-right: 1em !important;">
+                    <span><big style="font-size: 2em; color: white;">{{ product[3] }}</big></span>
+                    <div class="23" style="margin-left: 0.4em !important;display: flex; flex-direction: column;">
+                        <p style="display: block; margin-bottom: 0 !important;">units in stock</p>
+                        <small>Last checked at {{ product[7] }}</small>
+                    </div>
+                </div>
+                <h1 class="prodtitle" style="margin-top: 1em; margin-bottom: 0 !important;">{{ product[1] }}</h1>
+            </div>
+            <div class="right">
+                <button class="get" onclick="window.open('tel:{{ product[4] }}')"><p style="padding: 0.2em 0; margin: auto; color: rgb(0, 0, 0) !important;  font-size: 1.8em; font-family: 'favoritextb';">Get Now</p></button>
+                <p style="text-align: center; padding: 1em 0em !important; mix-blend-mode: difference; color: rgb(192, 192, 192);">Listed by: <i>{{ product[2] }}</i></p>
+                <b style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: difference; color: rgb(192, 192, 192);">Have the latest information?<br><a href="/edit/{{ product[0] }}">Make an edit</a></b>
+                <!-- <li class="nav-item text-white" style="margin: 0 0.5em;"><a id="sharebtn" class="nav-link a2a_dd" href="https://www.addtoany.com/share">Share</a></li> -->
+                <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')" style="margin-top: 2em; margin: auto !important; padding: 0.2em 0.5em; ; border: 3px solid rgb(192, 192, 192); mix-blend-mode: difference; height: max-content; width: auto; text-align: center !important;"><p class="contactp" href="https://www.addtoany.com/share" style="margin: 0 1em !important; color: rgb(192, 192, 192); mix-blend-mode: difference !important; padding: auto !important; display: block;">Know someone who needs this? <b>Share</b></p></div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+    <style>
+        .prodContainer {
+            color: white;
+            font-family: 'favoritext';
+            width: calc(100vw - 40px) !important;
+            height: max-content;
+            margin: auto;
+            text-align: left;
+            padding: 0.5em;
+            background-color: black;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            display: flex;
+            flex-direction: row;
+        }/* 
+        .prodImg {
+            float: left;
+            padding: 0%;
+            margin: 0%;
+            width: 20vw;
+        } */
+        
+        .left {
+            width: 80%;
+        }
+        
+        .right {
+            width: 20%;
+            height: 100%;
+        }
+
+        a {
+            bottom: 0;
+        }
+
+        h1 {
+            color: white;
+            font-family: 'favoritextb';
+            text-align: left;
+        }
+
+        h2 {
+            color: white;
+            padding: 0.2em;
+            font-size: 1.2em;
+        }
+
+        .get {
+            background-color: rgb(192, 192, 192); 
+            mix-blend-mode: difference !important;
+            width: 100%;
+            padding: 0 1em;
+            outline: none !important;
+            border: none;
+            color: rgb(0, 0, 0);
+        }
+
+        .get:hover {
+            background-color: royalblue !important;
+        }
+
+        .contact:hover {
+            background-color: rgb(192, 192, 192);
+            color: white !important;
+        }
+
+    </style>
+
+
+    <script>
+        function hideDiv1() {
+            var y = document.getElementById("widget1");
+            if (y.style.display === "none") {
+                y.style.display = "block";
+            } else {
+                y.style.display = "none";
+            }
+        }
+    </script>
+    </div>
+{% endblock %}
