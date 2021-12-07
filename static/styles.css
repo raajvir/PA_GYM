@@ -1,76 +1,92 @@
 @font-face {
-    font-family: 'favoritext';
-    src: url('fonts/ABCFavoritExtended-Regular-Trial.woff2');
+  font-family: 'favoritext';
+  src: url("fonts/ABCFavoritExtended-Regular-Trial.woff2");
 }
+
 @font-face {
-    font-family: 'favoritextb';
-    src: url('fonts/ABCFavoritExtended-Bold-Trial.woff2');
+  font-family: 'favoritextb';
+  src: url("fonts/ABCFavoritExtended-Bold-Trial.woff2");
 }
+
 @font-face {
-    font-family: 'favoritexp';
-    src: url('fonts/ABCFavoritExpanded-Regular-Trial.woff2');
+  font-family: 'favoritexp';
+  src: url("fonts/ABCFavoritExpanded-Regular-Trial.woff2");
 }
+
 @font-face {
-    font-family: 'favorit';
-    src: url('fonts/ABCFavorit-Regular-Trial.woff2');
+  font-family: 'favorit';
+  src: url("fonts/ABCFavorit-Regular-Trial.woff2");
 }
 
 .prodContainer {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url("gradbg.png");
-    opacity: 0.9;
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.8))), url("gradbg.png");
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url("gradbg.png");
+  opacity: 0.9;
 }
 
 #loader {
-    border: 4.5px solid black;
-    border-radius: 50%;
-    border-top: 4.5px solid white;
-    width: 43px;
-    height: 43px;
-    animation: spin 0.9s linear infinite;
+  border: 4.5px solid black;
+  border-radius: 50%;
+  border-top: 4.5px solid white;
+  width: 43px;
+  height: 43px;
+  -webkit-animation: spin 0.9s linear infinite;
+          animation: spin 0.9s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }
 
 .center {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 ul.nav li a, ul.nav li a:visited {
-    color: unset !important;
+  color: unset !important;
 }
 
 ul.nav li a:hover, ul.nav li a:active {
-    color: unset !important;
+  color: unset !important;
 }
 
 ul.nav li.active a {
-    color: unset !important;
+  color: unset !important;
 }
 
 .text-white {
-    color: white !important;
+  color: white !important;
 }
 
 .text-white:hover {
-    color: lightslategray !important;
+  color: lightslategray !important;
 }
 
 .box:hover {
-    color: white;
-    background-color: rgba(0, 0, 0, 0) !important;
-    box-shadow:0px 0px 0px 3px rgb(255, 255, 255) inset;
+  color: white;
+  background-color: rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: 0px 0px 0px 3px white inset;
+          box-shadow: 0px 0px 0px 3px white inset;
 }
 
-
-
-
-
+.navbar {
+  background-color: rgba(0, 0, 0, 0.657);
+  isolation: none !important;
+  font-family: 'favoritexp' !important;
+}
+/*# sourceMappingURL=styles.css.map */

@@ -5,6 +5,8 @@ List your product
 {% endblock %}
 
 {% block main %}
+<script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
+<script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
     <form action="/add" method="post" style="padding: 2em; font-family: 'favorit';">
         <input type="text" id="p_name" name="p_name" placeholder="Oxygen Contrator 5L" style="font-size: 2em; font-family: 'favoritextb';"><br>
         <small>Available at:</small><br>
@@ -12,12 +14,44 @@ List your product
         <small>Contact</small><br>
         <div class="form-group">
             <label for="name">Name: </label><input name="seller_name" id="seller_name" type="text" placeholder="John Doe"><br>
-            <label for="phone">Phone Number (+91): </label><input name="seller_phone" id="seller_phone" type="tel" placeholder="+04 9283747223"><br>
+            <label for="phone">Phone Number (+91): </label><input name="sellerphone" id="seller_phone" type="text" class="form-control" data-inputmask="'alias': 'phonebe'"><br>
             <label for="email">Email Address</label><input id="seller_email" name="seller_email" type="email" placeholder="johndoe@google.com"><br><br>
             <label for="units">Units In stock</label><input id="units" name="units" type="number" placeholder="12">
         </div>
         <button id="submit" type="submit">Confirm Listing</button>
     </form>
+    <script>
+        // document.getElementById('seller_phone').addEventListener("keyup", function(){
+        //     txt=this.value;
+        //     if (txt.length==3 || txt.length==5){
+        //         this.value=this.value+" ";
+        //     }
+        //     else if (txt.length >= 12) {
+
+        //     }
+
+            
+        // });
+    </script>
+    <script>
+        $(document).ready(function(){
+            $(":input").inputmask();
+
+            $("#seller_phone").inputmask({
+                    mask: '999 99999 99999',
+                    placeholder: '+91 989832 92834',
+                    showMaskOnHover: false,
+                    showMaskOnFocus: false,
+                    onBeforePaste: function (pastedValue, opts) {
+                    var processedValue = pastedValue;
+
+                    //do something with it
+
+                    return processedValue;
+                }   
+            });
+        });
+    </script>
     <style>
         input {
             outline: none;

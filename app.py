@@ -63,6 +63,27 @@ def index():
 #     return render_template('post.html', params=params, post=post
 
 
+@app.route('/search', methods=['GET', 'POST'])
+def search():
+    if request.method == 'GET':
+        nonelist = []
+        return render_template('search.html', rows=nonelist)
+
+    else:
+        query = request.form.get("query")
+        print(query)
+        rows = db.execute("SELECT * FROM products WHERE p_name LIKE %s OR seller_name LIKE %s", (query, query))
+        
+        res = list((rows[0]).values())[0]
+        print(res)
+
+        iter = 0
+        outList = []
+        for dict in rows:
+            outList.append(list(dict.values()))
+
+        return render_template("search.html", products=outList)
+
 @app.route("/edit/<id_slug>", methods=["GET", "POST"])
 def edit(id_slug):
     """Editing product info"""

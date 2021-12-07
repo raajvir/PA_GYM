@@ -23,13 +23,13 @@
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1/js/bootstrap.min.js"></script>
 
         <title class="btlogo">GetYourMed | {% block title %}{% endblock %}</title>
 
     <body>
-        <nav class="navbar sticky-top navbar-expand-md" style="background-color: rgba(0, 0, 0, 0.657); isolation: none !important; font-family: 'favoritexp' !important;">
-            <a class="navbar-brand" href="/" style="font-weight: bolder; font-size: 1.9em;"><span style="color: #ffffff;">Get</span><span style="color: rgb(143, 143, 143)" >Your</span><span style="background: -webkit-linear-gradient(rgb(0, 140, 255), rgb(0, 255, 255)); -webkit-background-clip: text;-webkit-text-fill-color: transparent;">Med</span><span style="color: #2f2f2f;">.com</span></a>
+        <nav class="navbar sticky-top navbar-expand-md" style="">
+            <a class="navbar-brand" href="/" style="font-weight: normal; font-size: 1.9em;"><span style="color: #ffffff;">Get</span><span style="color: rgb(143, 143, 143)" >Your</span><span style="background: -webkit-linear-gradient(rgb(0, 140, 255), rgb(0, 255, 255)); -webkit-background-clip: text;-webkit-text-fill-color: transparent;">Med</span><span style="color: #2f2f2f;">.org</span></a>
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -51,7 +51,8 @@
                                 console.log('Share not supported on this browser, do it the old way.');
                                 }
                             });
-                          </script> -->
+                        </script> -->
+                        <li class="nav-item" style="margin: 0.3em;"><a onMouseOver="this.style.textDecoration='none'" onMouseOver="this.style.fontSize='1.2em'" href="/search">🔍</a></li>
                         <li class="nav-item text-white" style="margin: 0 0.5em;"><a id="sharebtn" class="nav-link a2a_dd" href="https://www.addtoany.com/share">Share</a></li>
                         <li class="nav-item"><div class="box" style="color: rgb(0, 0, 0) !important; width: max-content; height: max-content; mix-blend-mode: difference !important; background-color: rgb(202, 202, 202);"><a class="nav-link" href="/add">List Your Product</a></div></li>
                     </ul>
@@ -113,7 +114,7 @@
         {% endif %}
         {% endwith %}
 
-        <div id="loader" class="center"></div>
+<!--         <div id="loader" class="center"></div>
 
         <script>
             document.onreadystatechange = function() {
@@ -129,7 +130,7 @@
                         "body").style.visibility = "visible";
                 }
             };
-        </script>
+        </script> -->
 
         <main>
             {% block main %}{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-List of medical appliances
+Search list of medical appliances
 {% endblock %}
 
 {% block main %}
@@ -19,14 +19,13 @@ List of medical appliances
     </script>
     <!-- <br> -->
     <div>
-        <div class="hero">
-            <style>
-                .hero h1 {
-                    font-family: 'favoritext';
-                }
-            </style>
-            <h1 style="color: rgb(0, 0, 0)">Share essential <span sty
-                col>medicines</span> and <span>medical appliances</span> <span>All in one place.</span></h1>
+        <div class="searchbar">
+            <form action="/search" method="post" ></form>
+                    <input type="text" placeholder="Search" name="query" style="width: 90%; display: inline;">
+                    <button id="submit" type="submit" style="display: inline; width: 10%;">Confirm Listing</button>
+                
+            </form>
+            <h2 style="color: black; margin-left: 0.8em;">Results:</h2>
         </div>
         {% for product in products %}
         <div class="prodContainer" id="Product{{ product[0] }}">
