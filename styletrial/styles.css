@@ -1,31 +1,55 @@
 @font-face {
-  font-family: 'favoritext';
-  src: url("fontse/ABCFavoritExtended-Regular-Trial.woff2");
+  font-family: "reproL";
+  src: url("../static/fonts/ABCREPRO-LIGHTITALIC-TRIAL.OTF");
 }
 
 @font-face {
-  font-family: 'favoritextb';
-  src: url("fonts/ABCFavoritExtended-Bold-Trial.woff2");
+  font-family: "reproM";
+  src: url("../static/fonts/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
 }
 
 @font-face {
-  font-family: 'favoritexp';
-  src: url("fonts/ABCFavoritExpanded-Regular-Trial.woff2");
+  font-family: "reproR";
+  src: url("../static/fonts/ABCREPRO-REGULARITALIC-TRIAL.OTF");
+  font-style: normal !important;
 }
 
 @font-face {
-  font-family: 'favorit';
-  src: url("fonts/ABCFavorit-Regular-Trial.woff2");
+  font-family: "socialL";
+  src: url("../static/fontse/ABCSOCIAL-LIGHTITALIC-TRIAL.OTF");
 }
 
 @font-face {
-  font-family: 'microgramma';
-  src: url("fonts/MICROGRAMMA D EXTENDED BOLD.OTF");
+  font-family: "social";
+  src: url("../static/fontse/ABCSOCIAL-REGULAR-TRIAL.OTF");
+}
+
+@font-face {
+  font-family: "microgramma";
+  src: url("../static/fontse/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
+}
+
+@font-face {
+  font-family: "favoritext";
+  src: url("../static/fonts/ABCFavoritExtended-Regular-Trial.woff2");
+}
+
+@font-face {
+  font-family: "favoritextb";
+  src: url("../static/fonts/ABCFavoritExtended-Bold-Trial.woff2");
+}
+
+@font-face {
+  font-family: "favoritexp";
+  src: url("../static/fonts/ABCFavoritExpanded-Regular-Trial.woff2");
+}
+
+@font-face {
+  font-family: "favorit";
+  src: url("../static/fonts/ABCFavorit-Regular-Trial.woff2");
 }
 
 .prodContainer {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0.1)), to(rgba(0, 0, 0, 0.8))), url("gradbg.png");
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url("gradbg.png");
   opacity: 0.9;
 }
 
@@ -62,11 +86,13 @@
   margin: auto;
 }
 
-ul.nav li a, ul.nav li a:visited {
+ul.nav li a,
+ul.nav li a:visited {
   color: unset !important;
 }
 
-ul.nav li a:hover, ul.nav li a:active {
+ul.nav li a:hover,
+ul.nav li a:active {
   color: unset !important;
 }
 
@@ -82,28 +108,59 @@ ul.nav li.active a {
   color: lightslategray !important;
 }
 
+.box {
+  color: black;
+}
+
 .box:hover {
-  color: white;
+  color: white !important;
   background-color: rgba(0, 0, 0, 0) !important;
   -webkit-box-shadow: 0px 0px 0px 3px white inset;
           box-shadow: 0px 0px 0px 3px white inset;
 }
 
 .navbar {
-  background-color: rgba(230, 230, 230, 0.89) !important;
+  mix-blend-mode: normal !important;
   /* filter: invert(0%); */
+  padding: 0 10em 0;
+  z-index: 999;
   /* filter: blur(5px); */
 }
 
-.nav-container {
+.backdrop {
+  width: 110vw;
+  left: -5vw;
+  top: -5%;
+  height: 110%;
+  -webkit-filter: blur(5px) brightness(0.5);
+          filter: blur(5px) brightness(0.5);
   z-index: -999;
+  background-color: rgba(15, 15, 15, 0.808) !important;
+  position: absolute;
+}
+
+@supports ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  .navbar {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+}
+
+.nav-container {
+  z-index: 990;
   isolation: isolate;
-  mix-blend-mode: difference;
+  mix-blend-mode: normal;
+  position: fixed;
+}
+
+* {
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
 }
 
 .prodContainer {
   color: white;
-  font-family: 'favoritext';
+  font-family: "favorit";
   width: calc(100vw - 40px) !important;
   height: -webkit-max-content;
   height: -moz-max-content;
@@ -111,7 +168,6 @@ ul.nav li.active a {
   margin: auto;
   text-align: left;
   padding: 0.5em;
-  background-color: black;
   margin-top: 1em;
   margin-bottom: 1em;
   display: -webkit-box;
@@ -121,6 +177,29 @@ ul.nav li.active a {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+
+.prodContainer #heading {
+  font-size: 1.5em;
+  font-family: "favoritext";
+}
+
+.prodContainer .maplink {
+  font-size: 1.3em;
+  font-family: "reproR";
+}
+
+.prodContainer .maplink a {
+  font-family: "reproM";
+  text-decoration: underline;
+}
+
+.prodContainer .stock {
+  background-color: white;
+  color: black;
+  background-color: white;
+  mix-blend-mode: difference;
+  color: black;
 }
 
 /* 
@@ -141,12 +220,82 @@ ul.nav li.active a {
 
 a {
   bottom: 0;
+  color: unset !important;
 }
 
-h1 {
+.hero h1 {
   color: white;
-  font-family: 'favoritextb';
+  font-family: "favoritextb";
   text-align: left;
+  padding: 0.4em;
+  padding-bottom: 0.2em !important;
+  font-size: 4.6em !important;
+}
+
+.hero #img1 {
+  vertical-align: text-top;
+  position: absolute;
+  width: 0.5em;
+}
+
+.hero #img2 {
+  vertical-align: text-top;
+  position: absolute;
+  width: 0.7em;
+}
+
+.hero #img3 {
+  position: absolute;
+  width: 50%;
+  top: 3.89em;
+  left: 0em;
+}
+
+.hero h5 {
+  font-family: "socialL";
+  font-size: 1.8em;
+  width: 80%;
+  padding-left: 1em;
+}
+
+.hero h5 u {
+  font-style: italic;
+}
+
+.hero h5 b {
+  font-family: "social";
+}
+
+.hero h5 g {
+  font-family: "favoritext";
+}
+
+.hero p {
+  font-family: "social";
+  font-weight: bold;
+  font-size: 1.6em;
+  width: 70%;
+  padding-left: 1em;
+}
+
+.hero .box {
+  font-size: 1.5em;
+  font-family: "favoritextb";
+  color: white !important;
+  background-color: black !important;
+  margin-left: 1em;
+  display: block;
+  padding: 0.5rem 1rem;
+  z-index: 9;
+}
+
+.hero .box:hover {
+  color: black !important;
+  background-color: rgba(255, 255, 255, 0) !important;
+  -webkit-box-shadow: 0px 0px 0px 3px black inset;
+          box-shadow: 0px 0px 0px 3px black inset;
+  mix-blend-mode: normal !important;
+  text-decoration: none;
 }
 
 h2 {
@@ -156,7 +305,7 @@ h2 {
 }
 
 .get {
-  background-color: silver;
+  background-color: white;
   mix-blend-mode: difference !important;
   width: 100%;
   padding: 0 1em;
@@ -166,16 +315,16 @@ h2 {
 }
 
 .get:hover {
-  background-color: royalblue !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: inset 0px 0px 0px 3px white;
+  box-shadow: inset 0px 0px 0px 3px white;
+  color: white;
+  mix-blend-mode: difference !important;
 }
 
 .contact:hover {
   background-color: silver;
   color: white !important;
-}
-
-.nav-list {
-  color: black;
 }
 
 .nav-list:hover {
@@ -208,13 +357,13 @@ h2 {
 }
 
 #zingbrand {
-  font-family: 'favorit';
+  font-family: "favorit";
   color: white;
 }
 
 #zingbrand zing {
   font-family: "microgramma";
   font-weight: bolder;
-  color: #6640FF;
+  color: #6640ff;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,105 +1,186 @@
 @font-face {
-    font-family: 'favoritext';
-    src: url('fontse/ABCFavoritExtended-Regular-Trial.woff2');
+  font-family: "reproL";
+  src: url("../static/fonts/ABCREPRO-LIGHTITALIC-TRIAL.OTF");
+}
+
+@font-face {
+  font-family: "reproM";
+  src: url("../static/fonts/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
+}
+
+@font-face {
+  font-family: "reproR";
+  src: url("../static/fonts/ABCREPRO-REGULARITALIC-TRIAL.OTF");
+  font-style: normal !important;
 }
 @font-face {
-    font-family: 'favoritextb';
-    src: url('fonts/ABCFavoritExtended-Bold-Trial.woff2');
+  font-family: "socialL";
+  src: url("../static/fontse/ABCSOCIAL-LIGHTITALIC-TRIAL.OTF");
 }
 @font-face {
-    font-family: 'favoritexp';
-    src: url('fonts/ABCFavoritExpanded-Regular-Trial.woff2');
+  font-family: "social";
+  src: url("../static/fontse/ABCSOCIAL-REGULAR-TRIAL.OTF");
 }
 @font-face {
-    font-family: 'favorit';
-    src: url('fonts/ABCFavorit-Regular-Trial.woff2');
+  font-family: "microgramma";
+  src: url("../static/fontse/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
+}
+
+@font-face {
+  font-family: "favoritext";
+  src: url("../static/fonts/ABCFavoritExtended-Regular-Trial.woff2");
 }
 @font-face {
-    font-family: 'microgramma';
-    src: url('fonts/MICROGRAMMA D EXTENDED BOLD.OTF');
+  font-family: "favoritextb";
+  src: url("../static/fonts/ABCFavoritExtended-Bold-Trial.woff2");
+}
+@font-face {
+  font-family: "favoritexp";
+  src: url("../static/fonts/ABCFavoritExpanded-Regular-Trial.woff2");
+}
+@font-face {
+  font-family: "favorit";
+  src: url("../static/fonts/ABCFavorit-Regular-Trial.woff2");
 }
 
 .prodContainer {
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url("gradbg.png");
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 #loader {
-    border: 4.5px solid black;
-    border-radius: 50%;
-    border-top: 4.5px solid white;
-    width: 43px;
-    height: 43px;
-    animation: spin 0.9s linear infinite;
+  border: 4.5px solid black;
+  border-radius: 50%;
+  border-top: 4.5px solid white;
+  width: 43px;
+  height: 43px;
+  animation: spin 0.9s linear infinite;
 }
 
 @keyframes spin {
-    100% {
-        transform: rotate(360deg);
-    }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .center {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
-ul.nav li a, ul.nav li a:visited {
-    color: unset !important;
+ul.nav li a,
+ul.nav li a:visited {
+  color: unset !important;
 }
 
-ul.nav li a:hover, ul.nav li a:active {
-    color: unset !important;
+ul.nav li a:hover,
+ul.nav li a:active {
+  color: unset !important;
 }
 
 ul.nav li.active a {
-    color: unset !important;
+  color: unset !important;
 }
 
 .text-white {
-    color: white !important;
+  color: white !important;
 }
 
 .text-white:hover {
-    color: lightslategray !important;
+  color: lightslategray !important;
 }
 
-.box:hover {
-    color: white;
+
+
+.box {
+  color: black;
+  &:hover {
+    color: white !important;
     background-color: rgba(0, 0, 0, 0) !important;
-    box-shadow:0px 0px 0px 3px rgb(255, 255, 255) inset;
+    box-shadow: 0px 0px 0px 3px rgb(255, 255, 255) inset;
+  }
 }
 
 .navbar {
-    background-color: rgba(230, 230, 230, 0.89) !important;
-    /* filter: invert(0%); */
-    /* filter: blur(5px); */
+  // background-color: rgba(15, 15, 15, 0.808) !important;
+  mix-blend-mode: normal !important;
+  /* filter: invert(0%); */
+  padding:  0 10em 0;
+  z-index: 999;
+  /* filter: blur(5px); */
+  // filter: blur(5px);
+}
+
+.backdrop {
+  width: 110vw;
+  left: -5vw;
+  top: -5%;
+  height: 110%;
+  filter: blur(5px) brightness(0.5);
+  z-index: -999;
+  background-color: rgba(15, 15, 15, 0.808) !important;
+  position: absolute;
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .navbar {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
 }
 
 .nav-container {
-    z-index: -999;
-    isolation: isolate;
-    mix-blend-mode: difference;
+  z-index: 990;
+  // background-color: rgba(15, 15, 15, 0.89) !important;
+  isolation: isolate;
+  mix-blend-mode: normal;
+  position: fixed;
+  // filter: blur(5px);
+}
+
+* {
+  transition-duration: 0.1s;
 }
 
 .prodContainer {
-    color: white;
-    font-family: 'favoritext';
-    width: calc(100vw - 40px) !important;
-    height: max-content;
-    margin: auto;
-    text-align: left;
-    padding: 0.5em;
-    background-color: black;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    display: flex;
-    flex-direction: row;
-}/* 
+  color: white;
+  font-family: "favorit";
+  width: calc(100vw - 40px) !important;
+  height: max-content;
+  margin: auto;
+  text-align: left;
+  padding: 0.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  #heading {
+    font-size: 1.5em;
+    font-family: "favoritext";
+  }
+  .maplink {
+    font-size: 1.3em;
+    font-family: "reproR";
+
+    a {
+      font-family: "reproM";
+      text-decoration: underline;
+    }
+  }
+  .stock {
+    background-color: rgb(255, 255, 255);
+    // mix-blend-mode: difference !important;
+    color: black;
+    background-color: rgb(255, 255, 255);
+    mix-blend-mode: difference;
+    color: rgb(0, 0, 0);
+  }
+}
+
+/* 
 .prodImg {
     float: left;
     padding: 0%;
@@ -108,93 +189,159 @@ ul.nav li.active a {
 } */
 
 .left {
-    width: 80%;
+  width: 80%;
 }
 
 .right {
-    width: 20%;
-    height: 100%;
+  width: 20%;
+  height: 100%;
 }
 
 a {
-    bottom: 0;
+  bottom: 0;
+  color: unset !important;
 }
 
-h1 {
+.hero {
+  h1 {
     color: white;
-    font-family: 'favoritextb';
+    font-family: "favoritextb";
     text-align: left;
+    padding: 0.4em;
+    padding-bottom: 0.2em !important;
+    font-size: 4.6em !important;
+  }
+
+  #img1 {
+    vertical-align: text-top;
+    position: absolute;
+    width: 0.5em;
+  }
+
+  #img2 {
+    vertical-align: text-top;
+    position: absolute;
+    width: 0.7em;
+  }
+
+  #img3 {
+    position: absolute;
+    width: 50%;
+    top: 3.89em;
+    left: 0em;
+  }
+
+  h5 {
+    font-family: "socialL";
+    font-size: 1.8em;
+    width: 80%;
+    padding-left: 1em;
+    u {
+      font-style: italic;
+    }
+    b {
+      font-family: "social";
+    }
+    g {
+      font-family: "favoritext";
+    }
+  }
+
+  p {
+    font-family: "social";
+    font-weight: bold;
+    font-size: 1.6em;
+    width: 70%;
+    padding-left: 1em;
+  }
+
+  .box {
+    font-size: 1.5em;
+    font-family: "favoritextb";
+    color: white !important;
+    background-color: rgb(0, 0, 0) !important;
+    margin-left: 1em;
+    display: block;
+    padding: 0.5rem 1rem;
+    z-index: 9;
+
+    &:hover {
+      color: black !important;
+      background-color: rgba(255, 255, 255, 0) !important;
+      box-shadow: 0px 0px 0px 3px rgb(0, 0, 0) inset;
+      mix-blend-mode: normal !important;
+      text-decoration: none;
+    }
+  }
 }
 
 h2 {
-    color: white;
-    padding: 0.2em;
-    font-size: 1.2em;
+  color: white;
+  padding: 0.2em;
+  font-size: 1.2em;
 }
 
 .get {
-    background-color: rgb(192, 192, 192); 
-    mix-blend-mode: difference !important;
-    width: 100%;
-    padding: 0 1em;
-    outline: none !important;
-    border: none;
-    color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  mix-blend-mode: difference !important;
+  width: 100%;
+  padding: 0 1em;
+  outline: none !important;
+  border: none;
+  color: rgb(0, 0, 0);
 }
 
 .get:hover {
-    background-color: royalblue !important;
+  background-color: rgba(0, 0, 0, 0) !important;
+  -webkit-box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+  -moz-box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+  box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  mix-blend-mode: difference !important;
 }
 
 .contact:hover {
-    background-color: rgb(192, 192, 192);
-    color: white !important;
+  background-color: rgb(192, 192, 192);
+  color: rgb(255, 255, 255) !important;
 }
 
-  
-
 .nav-list {
-    color: black;
-    &:hover {
-        color: white;
-    }
+  &:hover {
+    color: white;
+  }
 }
 
 .navbar {
-    margin-bottom: 100em;
+  margin-bottom: 100em;
 }
 
 .navbar-brand {
-    padding: 0 !important; 
+  padding: 0 !important;
 }
 
 .logo {
-    font-weight: normal; 
-    padding: 0 !important;
-    font-size: 2.5em !important; 
-    vertical-align: text-top;
-    font-family: favoritext !important;
-    height: 1.25em;
+  font-weight: normal;
+  padding: 0 !important;
+  font-size: 2.5em !important;
+  vertical-align: text-top;
+  font-family: favoritext !important;
+  height: 1.25em;
 }
 
 #sharebtn {
-    color: white !important;
-    &:hover {
-        color:rgb(204, 204, 204);
-    }
+  color: white !important;
+  &:hover {
+    color: rgb(204, 204, 204);
+  }
 }
 
 #zingbrand {
-    font-family: 'favorit';
-    color: white;
-    
-    zing {
-        font-family: "microgramma";
-        font-weight: bolder;
-        color: #6640FF;
-        
-    }
+  font-family: "favorit";
+  color: white;
+
+  zing {
+    font-family: "microgramma";
+    font-weight: bolder;
+    color: #6640ff;
+  }
 }
-
-
-
