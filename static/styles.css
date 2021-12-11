@@ -489,6 +489,7 @@ body {
   height: 100% !important;
   width: 100vw !important;
   overflow-x: hidden;
+  background-color: black;
 }
 
 html {
