@@ -1,4 +1,468 @@
 @font-face {
+    font-family: "reproL";
+    src: url("../static/fonts/ABCREPRO-LIGHTITALIC-TRIAL.OTF");
+  }
+  
+  @font-face {
+    font-family: "reproM";
+    src: url("../static/fonts/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
+  }
+  
+  @font-face {
+    font-family: "reproR";
+    src: url("../static/fonts/ABCREPRO-REGULARITALIC-TRIAL.OTF");
+    font-style: normal !important;
+  }
+  @font-face {
+    font-family: "socialL";
+    src: url("../static/fontse/ABCSOCIAL-LIGHTITALIC-TRIAL.OTF");
+  }
+  @font-face {
+    font-family: "social";
+    src: url("../static/fontse/ABCSOCIAL-REGULAR-TRIAL.OTF");
+  }
+  @font-face {
+    font-family: "microgramma";
+    src: url("../static/fontse/ABCREPRO-MEDIUMITALIC-TRIAL.OTF");
+  }
+  
+  @font-face {
+    font-family: "favoritext";
+    src: url("../static/fonts/ABCFavoritExtended-Regular-Trial.woff2");
+  }
+  @font-face {
+    font-family: "favoritextb";
+    src: url("../static/fonts/ABCFavoritExtended-Bold-Trial.woff2");
+  }
+  @font-face {
+    font-family: "favoritextl";
+    src: url("../static/fonts/ABCFavoritExtended-Light-Trial.woff2");
+  }
+  @font-face {
+    font-family: "favoritexp";
+    src: url("../static/fonts/ABCFavoritExpanded-Regular-Trial.woff2");
+  }
+  @font-face {
+    font-family: "favorit";
+    src: url("../static/fonts/ABCFavorit-Regular-Trial.woff2");
+  }
+  
+  .prodContainer {
+    opacity: 0.9;
+  }
+  
+  #loader {
+    border: 4.5px solid black;
+    border-radius: 50%;
+    border-top: 4.5px solid white;
+    width: 43px;
+    height: 43px;
+    animation: spin 0.9s linear infinite;
+  }
+  
+  @keyframes spin {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .line.arrow-right:after {
+    position: absolute;
+    content: '';
+    bottom: -10px;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid black;
+  }
+  
+  .line.arrow-left:after {
+    position: absolute;
+    content: '';
+    top: -10px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid black;
+  }
+  
+  .center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  ul.nav li a,
+  ul.nav li a:visited {
+    color: unset !important;
+  }
+  
+  ul.nav li a:hover,
+  ul.nav li a:active {
+    color: unset !important;
+  }
+  
+  ul.nav li.active a {
+    color: unset !important;
+  }
+  
+  .text-white {
+    color: white !important;
+  }
+  
+  .text-white:hover {
+    color: lightslategray !important;
+  }
+  
+  
+  
+  .navbar {
+    // background-color: rgba(15, 15, 15, 0.808) !important;
+    mix-blend-mode: normal !important;
+    /* filter: invert(0%); */
+    padding: 0.6em 2em;
+    z-index: 900;
+    /* filter: blur(5px); */
+    // filter: blur(5px);
+    .box {
+      color: rgb(15, 15, 15);
+      background-color: white;
+      mix-blend-mode: screen !important;
+      &:hover {
+        color: rgb(240, 240, 240) !important;
+        background-color: rgba(0, 0, 0, 0) !important;
+        box-shadow: 0px 0px 0px 3px rgb(255, 255, 255) inset;
+      }
+    }
+  }
+  
+  .backdrop {
+    width: 110vw;
+    left: -5vw;
+    top: -10%;
+    height: 120%;
+    filter: blur(5px) brightness(0.5);
+    z-index: -900;
+    background-color: rgba(15, 15, 15, 0.904) !important;
+    position: absolute;
+  
+  }
+  
+  .darkmode--activated .backdrop {
+    background-color: rgba(240, 240, 240, 0.808) !important;
+  }
+  
+  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+    .navbar {
+      -webkit-backdrop-filter: blur(5px);
+      backdrop-filter: blur(5px);
+    }
+  }
+  
+  .nav-container {
+    z-index: 990;
+    // background-color: rgba(15, 15, 15, 0.89) !important;
+    isolation: isolate;
+    mix-blend-mode: normal;
+    position: fixed;
+    // filter: blur(5px);
+  }
+  
+  * {
+    transition-duration: 0.1s;
+  }
+  .nav-link:hover {
+    text-decoration: none !important;
+  }
+  
+  .prodContainer {
+    color: white;
+    width: calc(100vw - 5em) !important;
+    height: max-content;
+    margin-left: 2em;
+    text-align: left;
+    padding: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: row;
+    #heading {
+      font-size: 1.5em;
+      font-family: "favoritext";
+    }
+    .maplink {
+      font-size: 1.3em;
+      font-family: "reproR";
+  
+      a {
+        font-family: "reproM";
+        text-decoration: underline;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .stock {
+      background-color: rgb(255, 255, 255);
+      // mix-blend-mode: exclusion !important;
+      color: black;
+      font-family: 'favorit';
+      isolation: isolate;
+      background-color: rgb(255, 255, 255);
+      mix-blend-mode: exclusion;
+      z-index: 99;
+    }
+    p {
+      font-family: 'reproR' !important;
+    }
+    .get {
+      font-family: 'favoritextb' !important;
+      height: 3.8em;
+      h5 {
+        height: 1.5em;
+      }
+    }
+    .asdf:hover {
+      text-decoration: none !important;
+    }
+  }
+  
+  /* 
+  .prodImg {
+      float: left;
+      padding: 0%;
+      margin: 0%;
+      width: 20vw;
+  } */
+  
+  .left {
+    width: 80%;
+  }
+  
+  .right {
+    width: 20%;
+    height: 100%;
+  }
+  
+  a {
+    bottom: 0;
+    color: unset !important;
+  }
+  
+  .hero {
+    h1 {
+      font-family: "favoritextb";
+      text-align: left;
+      padding: 0.4em;
+      padding-bottom: 0.2em !important;
+      font-size: 4.6em !important;
+    }
+  
+    #img1 {
+      vertical-align: text-top;
+      position: absolute;
+      width: 0.5em;
+    }
+  
+    #img2 {
+      vertical-align: text-top;
+      position: absolute;
+      width: 0.7em;
+    }
+  
+    #img3 {
+      position: absolute;
+      width: 50%;
+      top: 3.89em;
+      left: 0em;
+    }
+  
+    h5 {
+      font-family: "socialL";
+      font-size: 1.8em;
+      width: 80%;
+      padding-left: 1em;
+      color: black;
+      u {
+        font-style: italic;
+      }
+      b {
+        font-family: "social";
+      }
+      g {
+        font-family: "favoritext";
+      }
+    }
+  
+    p {
+      font-family: "social";
+      font-weight: bold;
+      font-size: 1.6em;
+      width: 70%;
+      padding-left: 1em;
+      color: black;
+    }
+  
+    .box {
+      font-size: 1.5em;
+      font-family: "favoritextb";
+      color: white !important;
+      background-color: rgb(0, 0, 0) !important;
+      margin-left: 1em;
+      display: block;
+      padding: 0.5rem 1rem;
+      z-index: 9;
+      a:hover {
+        text-decoration: none !important;
+      }
+  
+      &:hover {
+        color: black !important;
+        background-color: rgba(255, 255, 255, 0) !important;
+        box-shadow: 0px 0px 0px 3px rgb(0, 0, 0) inset;
+        mix-blend-mode: normal !important;
+        text-decoration: none !important;
+      }
+    }
+  
+    .darkmode--activated .box {
+      background-color: white !important;
+      color: black !important;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0) !important;
+        box-shadow: 0px 0px 0px 3px rgb(255, 255, 255) inset;
+      }
+    }
+  }
+  
+  .darkmode--activated .asset {
+    filter: brightness(0.8);
+    mix-blend-mode: difference;
+  }
+  
+  h2 {
+    color: white;
+    padding: 0.2em;
+    font-size: 1.2em;
+  }
+  
+  .get {
+    background-color: rgb(255, 255, 255);
+    mix-blend-mode: exclusion !important;
+    width: 100%;
+    padding: 0 1em;
+    outline: none !important;
+    border: none;
+    color: rgb(0, 0, 0);
+  }
+  
+  .get:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+    -webkit-box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+    -moz-box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 0px 3px rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    mix-blend-mode: exclusion !important;
+  }
+  
+  .contact:hover {
+    background-color: rgb(192, 192, 192);
+    color: rgb(255, 255, 255) !important;
+  }
+  
+  .nav-list {
+    &:hover {
+      color: white;
+    }
+  }
+  
+  .navbar {
+    margin-bottom: 100em;
+  }
+  
+  .navbar-brand {
+    padding: 0 !important;
+  }
+  
+  .logo {
+    font-weight: normal;
+    padding: 0 !important;
+    font-size: 2.5em !important;
+    vertical-align: text-top;
+    font-family: favoritext !important;
+    height: 1.25em;
+  }
+  
+  #sharebtn {
+    color: white !important;
+    &:hover {
+      color: rgb(204, 204, 204);
+    }
+  }
+  
+  #zingbrand {
+    font-family: "favorit";
+    color: white;
+  
+    zing {
+      font-family: "microgramma";
+      font-weight: bolder;
+      color: #5125ff;
+    }
+  }
+  
+  
+  .darkmode-toggle {
+    z-index: 999;
+  }
+  
+  
+  footer {
+    height: 18em;
+    width: 140% !important;
+    position: relative;
+    bottom: 0;
+    // margin-top: 1em;
+    background-color: rgba(15, 15, 15, 0) !important;
+    // filter: blur(5px);
+    .content {
+        filter: blur(0px) !important;
+        z-index: 2 !important;
+        color: white;
+        font-family: "favorit";
+    }  
+    .back {
+        bottom: -10%;
+        position: absolute;
+        left: -20vw;
+        filter: blur(5px);
+        background-color: rgba(15, 15, 15, 0.904) !important;
+        width: 110vw;
+        left: -5vw;
+        height: 120%;
+        filter: blur(5px) brightness(0.5);
+        position: absolute;
+      }
+  }
+  
+
+  body {
+    height: 100% !important;
+    width: 100vw !important;
+    overflow-x: hidden;
+  }
+
+  html {
+      height: max-content !important;
+  }
+/* @font-face {
     font-family: 'favoritext';
     src: url('fonts/ABCFavoritExtended-Regular-Trial.woff2');
 }
@@ -79,3 +543,4 @@ ul.nav li.active a {
 
 
 
+ */
