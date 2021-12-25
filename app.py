@@ -6,7 +6,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 from werkzeug.security import check_password_hash, generate_password_hash
-from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
+from werkzeug.utils import secure_filename
 import time
 from helpers import apology
 
@@ -14,7 +14,8 @@ from helpers import apology
 app = Flask(__name__)
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
+app.config["IMAGE_UPLOADS"] = "static/uploads"
+app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["JPEG", "JPG", "PNG", "GIF"]
 # Ensure responses aren't cached
 
 
@@ -72,8 +73,9 @@ def search():
     else:
         query = request.form.get("query")
         print(query)
-        rows = db.execute("SELECT * FROM products WHERE p_name LIKE %s OR seller_name LIKE %s", (query, query))
-        
+        rows = db.execute(
+            "SELECT * FROM products WHERE p_name LIKE %s OR seller_name LIKE %s", (query, query))
+
         res = list((rows[0]).values())[0]
         print(res)
 
@@ -84,7 +86,8 @@ def search():
 
         return render_template("search.html", products=outList)
 
-@app.route("/edit/<id_slug>", methods=["GET", "POST"])
+
+@app.route("/edit/<int:id_slug>", methods=["GET", "POST"])
 def edit(id_slug):
     """Editing product info"""
     if request.method == 'GET':
@@ -94,9 +97,10 @@ def edit(id_slug):
 
         outList = []
         outList.append(list((row[0]).values()))
-        return render_template('edit.html', product=outList[0])
+        return render_template('edit.html', product=outList[0], id_slug=id_slug)
         # return render_template("edit.html")
     else:
+        print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
         rowx = db.execute(
             "SELECT * FROM products WHERE productid = :id", id=id_slug)
         print(rowx)
@@ -105,34 +109,36 @@ def edit(id_slug):
         except:
             units = rowx.get('units')
         try:
-            location = int(request.form.get("location"))
+            location = str(request.form.get("location"))
         except:
             location = rowx.get('location')
         try:
-            p_name = int(request.form.get("p_name"))
+            p_name = str(request.form.get("p_name"))
         except:
             p_name = rowx.get('p_name')
         try:
-            seller_name = int(request.form.get("seller_name"))
+            seller_name = str(request.form.get("seller_name"))
         except:
             seller_name = rowx.get('seller_name')
         try:
-            seller_phone = int(request.form.get("seller_phone"))
+            seller_phone = str(request.form.get("seller_phone"))
         except:
             seller_phone = rowx.get('seller_phone')
         try:
-            seller_email = int(request.form.get("seller_email"))
+            seller_email = str(request.form.get("seller_email"))
         except:
             seller_email = rowx.get('seller_email')
-
-        nxtime = time.time()
+        print("asdfa;sdlfkjas;dlkfja;dlfjas;ldfkja;lf")
+        nxtime = time.ctime(time.time())
+        nxtime = nxtime[4:]
+        nxtime = nxtime[0:6] + "," + nxtime[15:]
 
         print(p_name, seller_name, units, seller_email,
               location, id_slug, seller_phone, nxtime)
         db.execute("UPDATE products SET p_name = :p_name, seller_name = :seller_name, units = :units, seller_phone = :seller_phone, seller_email = :seller_email, location = :location, time = :time WHERE productid = :prodid",
                    p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=nxtime, prodid=id_slug)
         # db.execute("UPDATE products SET units = :units WHERE productid = :prodid", units=units, prodid=prodid)
-        return render_template('index.html')
+        return redirect("/")
 
 
 @app.route("/add", methods=["GET", "POST"])
@@ -141,8 +147,19 @@ def add():
     if request.method == 'GET':
         return render_template("add.html")
     else:
-        ntime = time.time()
-        # nxtime = f"{ntime.hour}:{ntime.minute}:{ntime.second}"
+        ntime = time.ctime(time.time())
+        ntime = ntime[4:]
+        ntime = ntime[0:6] + "," + ntime[15:]
+        if request.files:
+            image = request.files["img"]
+            print(image)
+            img_src = os.path.join(app.config["IMAGE_UPLOADS"], image.filename)
+            print(img_src)
+            image.save(img_src)
+            
+            print("Image saved")
+
+        # img_src = img_src.replace("uploads\", "uploads/")
         p_name = str(request.form.get("p_name"))
         seller_name = str(request.form.get("seller_name"))
         print(request.form.get('units'))
@@ -153,11 +170,25 @@ def add():
         # product_desc = str(request.form.get("product_desc"))
 
         # add time remove product desc in db
-        db.execute("INSERT INTO products(p_name,seller_name,units,seller_phone,seller_email, location, time) VALUES (:p_name, :seller_name, :units,:seller_phone, :seller_email,:location, :time)",
-                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=ntime)
+        db.execute("INSERT INTO products(p_name,seller_name,units,seller_phone,seller_email, location, time, img_src) VALUES (:p_name, :seller_name, :units,:seller_phone, :seller_email,:location, :time, :img_src)",
+                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=ntime, img_src=img_src)
 
-        return render_template("index.html")
+        return redirect("/")
 
+def allowed_image(filename):
+
+    # We only want files with a . in the filename
+    if not "." in filename:
+        return False
+
+    # Split the extension from the filename
+    ext = filename.rsplit(".", 1)[1]
+
+    # Check if the extension is in ALLOWED_IMAGE_EXTENSIONS
+    if ext.upper() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+        return True
+    else:
+        return False
 
 def errorhandler(e):
     """Handle error"""

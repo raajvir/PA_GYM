@@ -14,7 +14,8 @@
         <!-- https://favicon.io/emoji-favicons/money-mouth-face/ -->
         <link href="/static/favicon.ico" rel="icon">
         <link href="/static/styles.css" rel="stylesheet">
-        <script src="/gradient.js"></script>
+        <!-- <script src="/static/gradient.js"></script> -->
+        <!-- <script src="/static/picker.js"></script> -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
 
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -25,18 +26,6 @@
 
     <body>
         <script id="gradient">
-            function generate() {
-                var hexValues = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e"];
-                var randomColor1 = "hsl(" + 360 * Math.random() + ',' + (75 + 20 * Math.random()) + '%,' + (45 + 5 * Math.random()) + '%, 1)',
-                randomColor2 = "hsl(" + 360 * Math.random() + ',' + (75 + 20 * Math.random()) + '%,' + (45 + 5 * Math.random()) + '%, 1)'
-
-                var angle = Math.round( Math.random() * 360 );
-                
-                var gradient = "linear-gradient(" + angle + "deg" + ", " + randomColor1 + ", " + randomColor2 + ")";
-                
-                return gradient
-            }
-
             $(document).ready(function() {
                 $('.prodContainer').each(function () {
                     var output = generate();
@@ -49,7 +38,7 @@
             <nav class="navbar fixed-top navbar-expand-md" style="/* padding-left: 2em; padding-right: 2em; */">
                 <div class="backdrop"></div>
                 <div class="logo-parent">
-                    <a class="navbar-brand logo" href="/"><span style="color: #ffffff;">Get</span><span style="color: #B4B4B4 !important">Your</span><span style="background: conic-gradient(from 180deg at 50% 50%, #00F0FF 0deg, #80FF00 360deg); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Med</span><span style="color: #898989; font-size: 0.7em; vertical-align: text-top;">.org</span></a><br>
+                    <a class="navbar-brand logo" href="/"><span style="color: #ffffff;">Get</span><span style="color: #B4B4B4 !important">Your</span><span style="background: radial-gradient(#0084ff, #80FF00, #FFC700); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Med</span><span style="color: #898989; font-size: 0.7em; vertical-align: text-top;">.org</span></a><br>
                     <span id="zingbrand">a <zing>ZING</zing> non-profit venture</span>
                 </div>
     
@@ -77,7 +66,7 @@
                             </script> -->
                             <li class="nav-item" style="margin: 0.3em;"><a onMouseOver="this.style.textDecoration='none'" onMouseOver="this.style.fontSize='1.2em'" href="/search"><img src="/static/search.svg" style="width: 1em;" alt=""></a></li>
                             <li class="nav-item text-white" style="margin: 0 0.5em;"><a id="sharebtn" class="nav-link a2a_dd" href="https://www.addtoany.com/share">Share</a></li>
-                            <li class="nav-item"><div class="box" style="width: max-content; height: max-content;"><a class="nav-link nav-list" href="/add">List Your Product</a></div></li>
+                            <li class="nav-item"><div class="box" style="width: max-content; height: max-content;"><a class="nav-link nav-list" href="/add" style="color: black;">List Your Product</a></div></li>
                         </ul>
                 </div>
             </nav>

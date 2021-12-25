@@ -7,7 +7,7 @@ List your product
 {% block main %}
 <script type='text/javascript' src='https://code.jquery.com/jquery-1.11.0.js'></script>
 <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-    <form action="/add" method="post" style="padding: 2em; font-family: 'favorit';">
+    <form action="/add" method="post" style="padding: 2em; font-family: 'favorit';" enctype="multipart/form-data">
         <input type="text" id="p_name" name="p_name" placeholder="Oxygen Contrator 5L" style="font-size: 2em; font-family: 'favoritextb';"><br>
         <small>Available at:</small><br>
         <input type="text" name="location" id="location" placeholder="4558 Briarwood Road, Blue Eye, MO, Missouri, 6561" style="margin-bottom: 1em !important; width: 80%;"><br>
@@ -18,8 +18,14 @@ List your product
             <label for="email">Email Address</label><input id="seller_email" name="seller_email" type="email" placeholder="johndoe@google.com"><br><br>
             <label for="units">Units In stock</label><input id="units" name="units" type="number" placeholder="12">
         </div>
+        <input type="file" id="img" name="img" accept="image/*" oninput="filesize(this);"><br><br>
         <button id="submit" type="submit">Confirm Listing</button>
     </form>
+    <script>
+        function filesize(elem){
+          document.cookie = `filesize=${elem.files[0].size}`
+        }
+    </script>
     <script>
         // document.getElementById('seller_phone').addEventListener("keyup", function(){
         //     txt=this.value;
