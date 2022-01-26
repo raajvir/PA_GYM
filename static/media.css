@@ -1,0 +1,163 @@
+@media (max-width: 30em) {
+  .hero h1 {
+    font-family: "favoritextb";
+    text-align: left;
+    padding: 1em;
+    padding-bottom: 0.2em !important;
+    font-size: 2em !important;
+  }
+  .hero #img3 {
+    vertical-align: text-top;
+    position: absolute;
+    width: 0.5em;
+    margin-top: 1em;
+  }
+  .hero h5 {
+    font-family: "socialL";
+    font-size: 1em;
+    width: 80%;
+    padding-left: 1em;
+    color: black;
+  }
+  .hero h5 u {
+    font-style: italic;
+  }
+  .hero h5 b {
+    font-family: "social";
+  }
+  .hero h5 g {
+    font-family: "favoritext";
+  }
+  .hero p {
+    font-family: "social";
+    font-weight: bold;
+    font-size: 1em;
+    width: 70%;
+    padding-left: 1em;
+    color: black;
+  }
+  .hero .box {
+    font-size: 1em;
+    font-family: "favoritextb";
+    color: white !important;
+    background-color: black !important;
+    margin-left: 1em;
+    display: block;
+    padding: 0.5rem 1rem;
+    z-index: 9;
+  }
+  .hero .box a:hover {
+    text-decoration: none !important;
+  }
+  .hero .box:hover {
+    color: black !important;
+    background-color: rgba(255, 255, 255, 0) !important;
+    -webkit-box-shadow: 0px 0px 0px 3px black inset;
+            box-shadow: 0px 0px 0px 3px black inset;
+    mix-blend-mode: normal !important;
+    text-decoration: none !important;
+  }
+  .prodContainer {
+    color: white;
+    width: calc(100vw - 4em);
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    margin-left: 2em;
+    text-align: left;
+    padding: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: #53c0ff;
+  }
+  .prodContainer:nth-child(2n + 2) {
+    background-color: #3cffc4;
+  }
+  .prodContainer:nth-child(3n + 3) {
+    background-color: #ffd745;
+  }
+  .prodContainer:nth-child(4n + 4) {
+    background-color: #3aff64;
+  }
+  .prodContainer .prodImage {
+    display: inline-block;
+    min-width: 0 !important;
+    max-width: 100%;
+  }
+  .prodContainer .left {
+    max-width: 100%;
+    min-width: 50%;
+    padding: 1em 0;
+  }
+  .prodContainer .right {
+    max-width: 100%;
+    margin-left: 0;
+    height: 100%;
+  }
+  .prodContainer .right p {
+    font-family: "reproR" !important;
+    padding: 0.5em !important;
+    margin: 0;
+  }
+  .prodContainer #heading {
+    font-size: 1.5em;
+    font-family: "favoritext";
+  }
+  .prodContainer .maplink {
+    font-size: 1.3em;
+    font-family: "reproR";
+    padding: 0 !important;
+  }
+  .prodContainer .maplink a {
+    font-family: "reproM";
+    text-decoration: underline;
+  }
+  .prodContainer .maplink a:hover {
+    text-decoration: none;
+  }
+  .prodContainer .stock {
+    background-color: white;
+    color: black;
+    font-family: "favorit";
+    isolation: isolate;
+    background-color: white;
+    mix-blend-mode: exclusion;
+    z-index: 99;
+    font-size: 0.8em;
+    width: 100% !important;
+  }
+  .prodContainer hr {
+    display: block;
+    border-top: 2px solid white;
+    mix-blend-mode: exclusion;
+    width: 100%;
+    margin: 0 auto 1em auto;
+  }
+  .prodContainer .get {
+    font-family: "favoritextb" !important;
+    height: 3.8em;
+  }
+  .prodContainer .get h5 {
+    height: 1.5em;
+  }
+  .prodContainer .asdf:hover {
+    text-decoration: none !important;
+  }
+  footer .u_left {
+    width: 100% !important;
+  }
+  footer .u_left p {
+    width: 100%;
+  }
+  footer .b_right {
+    display: none !important;
+  }
+}
+/*# sourceMappingURL=media.css.map */

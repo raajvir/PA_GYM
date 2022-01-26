@@ -140,6 +140,16 @@ ul.nav li a:active {
   color: unset !important;
 }
 
+#searchbar {
+  width: calc(100vw - 5em);
+  margin-left: 2em;
+  background-color: black;
+}
+
+#searchbar .searcher {
+  width: 100%;
+}
+
 ul.nav li.active a {
   color: unset !important;
 }
@@ -212,6 +222,14 @@ ul.nav li.active a {
   text-decoration: none !important;
 }
 
+/* .prodContainer::before {
+    content: '';
+    display: block;
+    height: 175px;
+    margin-top: -175px;
+    visibility: hidden;
+}
+ */
 .prodContainer {
   color: white;
   width: calc(100vw - 5em);
@@ -230,19 +248,42 @@ ul.nav li.active a {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #25afff;
+  background-color: #53c0ff;
 }
 
-.prodContainer:nth-child(2n+2) {
+.prodContainer:nth-child(2n + 2) {
   background-color: #3cffc4;
 }
 
-.prodContainer:nth-child(3n+3) {
+.prodContainer:nth-child(3n + 3) {
   background-color: #ffd745;
 }
 
-.prodContainer:nth-child(4n+4) {
+.prodContainer:nth-child(4n + 4) {
   background-color: #3aff64;
+}
+
+.prodContainer .prodImage {
+  display: inline-block;
+  min-width: 0 !important;
+  max-width: 30%;
+}
+
+.prodContainer .prodImage img {
+  display: inline-block;
+  width: calc(100% - 1em) !important;
+  min-width: 0 !important;
+}
+
+.prodContainer .left {
+  max-width: 80%;
+  min-width: 50%;
+}
+
+.prodContainer .right {
+  max-width: 20%;
+  margin-left: auto;
+  height: 100%;
 }
 
 .prodContainer #heading {
@@ -274,8 +315,13 @@ ul.nav li.active a {
   z-index: 99;
 }
 
+.prodContainer hr {
+  display: none;
+}
+
 .prodContainer p {
   font-family: "reproR" !important;
+  padding: 0.5em 0em 2.3em 0;
 }
 
 .prodContainer .get {
@@ -298,15 +344,6 @@ ul.nav li.active a {
       margin: 0%;
       width: 20vw;
   } */
-.left {
-  width: 80%;
-}
-
-.right {
-  width: 20%;
-  height: 100%;
-}
-
 a {
   bottom: 0;
   color: unset !important;
@@ -317,7 +354,7 @@ a {
   text-align: left;
   padding: 0.4em;
   padding-bottom: 0.2em !important;
-  font-size: 4.6em !important;
+  font-size: 4.6em;
 }
 
 .hero #img1 {

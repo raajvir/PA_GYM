@@ -6,210 +6,51 @@ Search list of medical appliances
 
 {% block main %}
     <br>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        function hideDiv() {
-            var x = document.getElementById("widget");
-            if (x.style.display === "none") {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-        }
-    </script>
-    <!-- <br> -->
-    <div>
-        <div class="searchbar">
-            <form action="/search" method="post" ></form>
-                    <input type="text" placeholder="Search" name="query" style="width: 90%; display: inline;">
-                    <button id="submit" type="submit" style="display: inline; width: 10%;">Confirm Listing</button>
-                
-            </form>
-            <h2 style="color: black; margin-left: 0.8em;">Results:</h2>
+    <form action="/search" method="post" id="searchbar">
+            <input type="text" placeholder="Search" name="query" id="searcher">
+            <button id="submit" type="submit" style="display: inline; width: 10%;" id="searchconfirm">Search</button>
+    </form>
+    <h2 style="color: black; margin-left: 0.8em;">Results:</h2>
+    
+    
+    {% for product in products %}
+    <div class="prodContainer" id="p_{{ product[0] }}">
+        <div class="prodImage">
+            {% if product[8] != None %}
+                <img src="/{{ product[8] }}" alt="" srcset="" style="height: 100%;">
+            {% endif %}
         </div>
-        {% for product in products %}
-        <div class="prodContainer" id="Product{{ product[0] }}">
-            <div class="left">
-                <h2><b style="font-size: 1.25em; font-family: 'favoritextb';">Available at:</b> <p class="maplink" id="hoverer">{{ product[6] }}. <a href="https://www.google.com/maps/search/{{ product[6] }}">Visit them now.</a></p></h2>
-                    <div class="iframe-preview" id="iframe">
-                        <iframe src="https://robinjescott.com/" style="border:0px #FFFFFF none;" name="test" scrolling="yes" frameborder="0" marginheight="0px" marginwidth="0px" height="1080px" width="1920px" style="overflow: hidden !important;"></iframe>
-                    </div>
-                    <style>
-                        #hoverer:hover ~ #iframe {
-                            display:visible !important;
-                        }
-                        #iframe {
-                            transition:.2s ease-in-out opacity, .2s ease-in-out transform;
-                            opacity:1;
-                            display: none;
-                            position:absolute !important;
-                            z-index: 999;
-                            box-shadow:0 1px 5px rgba(0,0,0,.5);
-                            width:230px;
-                            padding-right: 30px;
-                            height:216px;
-                            width: 384px;
-                            border:4px solid #fff;
-                            overflow-x:hidden;
-                            overflow-y:auto;
-                            transform-origin:center bottom;
-                            transform: translateX(-50%) translateY(10px) scale(.9);
-                        }
-                            
-/*                         iframe .iframe-preview {
-                            transform:scale(.2);
-                            transform-origin:0 0;
-                        } */
-                    </style>
-                    <script type = "text/javascript">
-                           function getConfirmation() {
-                              var retVal = confirm("We hope the product helps you gain a better health! But do keep in mind that GetYourMed does not endorse nor is it affliated to any of the listed products or its suppliers, and therefore will not be responsible for any damage caused by this communication that ensues. \n\nSo, proceed with caution at your own risk, and Good Luck! 🤞");
-                              if( retVal == true ) {
-                                window.open('tel:{{ product[4] }}')
-                                return true;
-                              } else {
-                                return false;
-                              }
-                           }
-                     </script> 
-<!--                      <script>
-                         document.getElementById('getbtn').onclick = function(){
-                            swal("Good job!", "You clicked the button!", "success");
-                        };
-                        const swalWithBootstrapButtons = Swal.mixin({
-                            customClass: {
-                                confirmButton: 'btn btn-success',
-                                cancelButton: 'btn btn-danger'
-                            },
-                            buttonsStyling: false
-                        })
-
-                        swalWithBootstrapButtons.fire({
-                            title: '⚠ Disclaimer',
-                            text: "The GetYourMed organization does not endorse nor is it affliated to any of the listed products or its suppliers, and therefore will not be responsible for any damage caused by this communication that ensues. \nBut we hope the product helps you gain a better health! Good Luck!",
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonText: 'Proceed',
-                            cancelButtonText: "I'll think over it again",
-                            reverseButtons: true
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                swalWithBootstrapButtons.fire(
-                                'Success',
-                                "You have successfully been redirected to the seller's contact page",
-                                'success'
-                                )
-                            } else if (
-                                /* Read more about handling dismissals below */
-                                result.dismiss === Swal.DismissReason.cancel
-                            ) {
-                                swalWithBootstrapButtons.fire(
-                                'Cancelled',
-                                'An unforseeable error has occured. Our team is working on it right now. 🤞',
-                                'error'
-                                )
-                            }
-                        })
-                     </script>  -->   
+        <div class="left">
+            <b id="heading" style="mix-blend-mode: exclusion;">Available at:</b> <p style="mix-blend-mode: exclusion;" class="maplink" id="hoverer">{{ product[6] }}. <a href="https://www.google.com/maps/search/{{ product[6] }}" id="hoverer">Visit now.</a></p>
                 
-                <div class="stock" style="top: 0; display: flex; color: grey; background-color: black; width: max-content; padding: 0.3em; padding-right: 1em !important;">
-                    <span><big style="font-size: 2em; color: white;">{{ product[3] }}</big></span>
-                    <div class="23" style="margin-left: 0.4em !important;display: flex; flex-direction: column;">
-                        <p style="display: block; margin-bottom: 0 !important;">units in stock</p>
-                        <small>Last checked at {{ product[7] }}</small>
-                    </div>
+                <script type = "text/javascript">
+                    function getConfirmation() {
+                        var retVal = confirm("We hope the product helps you gain a better health! But do keep in mind that GetYourMed does not endorse nor is it affliated to any of the listed products or its suppliers, and therefore will not be responsible for any damage caused by this communication that ensues. \n\nSo, proceed with caution at your own risk, and Good Luck! 🤞");
+                        if( retVal == true ) {
+                            window.open('tel:{{ product[4] }}')
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                </script> 
+                <div class="stock" style="top: 0; display: flex;background-color: rgb(255, 255, 255); width: max-content; padding: 0.3em; padding-right: 1em !important; height: 5em; font-family: 'favorit' !important;">
+                <span><big style="position: relative; font-size: 4.5em;  height: 4em; bottom:0.2em !important;">{{ product[3] }}</big></span>
+                <div class="23" style="margin-left: 0.4em !important;display: flex; flex-direction: column; height: 3em; font-family: 'favoritext';">
+                    <h6 style="display: block; margin-bottom: 0 !important; font-size: 1.8em;">units in stock</h6>
+                    <small style="font-size: 1.2em; font-family: 'favoritextb'; margin-top: 0.2em;">Last checked @ {{ product[7] }}</small>
                 </div>
-                <h1 class="prodtitle" style="margin-top: 1em; margin-bottom: 0 !important;">{{ product[1] }}</h1>
             </div>
-            <div class="right">
-                <button class="get" id="getbtn" onclick="getConfirmation();"><p style="padding: 0.2em 0; margin: auto; color: rgb(0, 0, 0) !important;  font-size: 1.8em; font-family: 'favoritextb';">Get Now</p></button>
-                <p style="text-align: center; padding: 1em 0em !important; mix-blend-mode: difference; color: rgb(192, 192, 192);">Listed by: <i>{{ product[2] }}</i></p>
-                <b style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: difference; color: rgb(192, 192, 192);">Have the latest information?<br><a href="/edit/{{ product[0] }}">Make an edit</a></b>
-                <!-- <li class="nav-item text-white" style="margin: 0 0.5em;"><a id="sharebtn" class="nav-link a2a_dd" href="https://www.addtoany.com/share">Share</a></li> -->
-                <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')" style="margin-top: 2em; margin: auto !important; padding: 0.2em 0.5em; ; border: 3px solid rgb(192, 192, 192); mix-blend-mode: difference; height: max-content; width: auto; text-align: center !important;"><p class="contactp" href="https://www.addtoany.com/share" data-a2a-url="http://127.0.0.1:5000/#Product{{ product[0] }}" style="margin: 0 1em !important; color: rgb(192, 192, 192); mix-blend-mode: difference !important; padding: auto !important; display: block;">Know someone who needs this? <b>Share</b></p></div>
-            </div>
-
+            <h1 class="prodtitle" style="margin-top: 1em; margin-bottom: 0 !important; mix-blend-mode: exclusion; font-family: 'favoritextb';">{{ product[1] }}</h1>
         </div>
-        {% endfor %}
+        <div class="right" style="height: 100% !important;">
+            <button class="get" id="getbtn" onclick="getConfirmation();"><h5 style="padding: 0.2em 0; margin: auto;  font-size: 2.2em; ">Get Now</p></button>
+            <p style="text-align: center; padding: 0.5em 0em 2.3em 0 !important; mix-blend-mode: exclusion; color: rgb(255, 255, 255);"><i>Listed by <b>{{ product[2] }}</b></i></p>
+            <p style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: exclusion; color: rgb(255, 255, 255); margin-bottom: 0.5em !important;">Have the latest information?<br><a href="/edit/{{ product[0] }}" class="asdf" style="text-decoration: underline; color: rgb(231, 205, 255) !important;">Make an edit</a></p>
+            <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')" style="margin-top: 3em; margin: auto !important; padding: 0.2em 0.5em; border: 3px solid rgb(255, 255, 255); mix-blend-mode: exclusion; height: max-content; width: auto; text-align: center !important;"><h6 class="contactp" href="https://www.addtoany.com/share" data-a2a-url="http://127.0.0.1:5000/#Product{{ product[0] }}" style="margin: 0 0em !important; color: rgb(255, 255, 255); mix-blend-mode: exclusion !important; display: block; font-family: 'favoritextb'; font-size: 1.8em;">Share Product</h6></div>
+        </div>
+
     </div>
-    <style>
-        .prodContainer {
-            color: white;
-            font-family: 'favoritext';
-            width: calc(100vw - 40px) !important;
-            height: max-content;
-            margin: auto;
-            text-align: left;
-            padding: 0.5em;
-            background-color: black;
-            margin-top: 1em;
-            margin-bottom: 1em;
-            display: flex;
-            flex-direction: row;
-        }/* 
-        .prodImg {
-            float: left;
-            padding: 0%;
-            margin: 0%;
-            width: 20vw;
-        } */
-        
-        .left {
-            width: 80%;
-        }
-        
-        .right {
-            width: 20%;
-            height: 100%;
-        }
+    {% endfor %}
 
-        a {
-            bottom: 0;
-        }
-
-        h1 {
-            color: white;
-            font-family: 'favoritextb';
-            text-align: left;
-        }
-
-        h2 {
-            color: white;
-            padding: 0.2em;
-            font-size: 1.2em;
-        }
-
-        .get {
-            background-color: rgb(192, 192, 192); 
-            mix-blend-mode: difference !important;
-            width: 100%;
-            padding: 0 1em;
-            outline: none !important;
-            border: none;
-            color: rgb(0, 0, 0);
-        }
-
-        .get:hover {
-            background-color: royalblue !important;
-        }
-
-        .contact:hover {
-            background-color: rgb(192, 192, 192);
-            color: white !important;
-        }
-
-    </style>
-
-
-    <script>
-        function hideDiv1() {
-            var y = document.getElementById("widget1");
-            if (y.style.display === "none") {
-                y.style.display = "block";
-            } else {
-                y.style.display = "none";
-            }
-        }
-    </script>
-    </div>
 {% endblock %}

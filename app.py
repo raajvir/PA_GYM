@@ -55,6 +55,7 @@ def index():
     outList = []
     for dict in rows:
         outList.append(list(dict.values()))
+        # print(list(dict.values())[8])
 
     return render_template("index.html", products=outList)
 
@@ -69,13 +70,14 @@ def search():
     if request.method == 'GET':
         nonelist = []
         return render_template('search.html', rows=nonelist)
-
     else:
+        # print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
         query = request.form.get("query")
-        print(query)
+        # print(query)
         rows = db.execute(
-            "SELECT * FROM products WHERE p_name LIKE %s OR seller_name LIKE %s", (query, query))
-
+            "SELECT * FROM products WHERE p_name LIKE '%'||?||'%'", (query))
+        print(rows)
+        print(rows[0])
         res = list((rows[0]).values())[0]
         print(res)
 
@@ -83,7 +85,7 @@ def search():
         outList = []
         for dict in rows:
             outList.append(list(dict.values()))
-
+        print(outList)
         return render_template("search.html", products=outList)
 
 
@@ -150,13 +152,14 @@ def add():
         ntime = time.ctime(time.time())
         ntime = ntime[4:]
         ntime = ntime[0:6] + "," + ntime[15:]
-        if request.files:
+        img_src = 'static/uploads\istockphoto-1128826884-170667a.jpg'
+        if request.files["img"] != None:
             image = request.files["img"]
             print(image)
             img_src = os.path.join(app.config["IMAGE_UPLOADS"], image.filename)
             print(img_src)
             image.save(img_src)
-            
+
             print("Image saved")
 
         # img_src = img_src.replace("uploads\", "uploads/")
@@ -175,6 +178,7 @@ def add():
 
         return redirect("/")
 
+
 def allowed_image(filename):
 
     # We only want files with a . in the filename
@@ -189,6 +193,7 @@ def allowed_image(filename):
         return True
     else:
         return False
+
 
 def errorhandler(e):
     """Handle error"""

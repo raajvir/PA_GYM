@@ -33,10 +33,95 @@ List of medical appliances
             <hr style="border-top: 3px dashed rgb(0, 0, 0); width: calc(100vw - 5em); margin-left: 2em;">
         </div>
 
+        <script>
+            (function(document, history, location) {
+            var HISTORY_SUPPORT = !!(history && history.pushState);
+
+            var anchorScrolls = {
+                ANCHOR_REGEX: /^#[^ ]+$/,
+                OFFSET_HEIGHT_PX: 200,
+
+                /**
+                 * Establish events, and fix initial scroll position if a hash is provided.
+                 */
+                init: function() {
+                this.scrollToCurrent();
+                window.addEventListener('hashchange', this.scrollToCurrent.bind(this));
+                document.body.addEventListener('click', this.delegateAnchors.bind(this));
+                },
+
+                /**
+                 * Return the offset amount to deduct from the normal scroll position.
+                 * Modify as appropriate to allow for dynamic calculations
+                 */
+                getFixedOffset: function() {
+                return this.OFFSET_HEIGHT_PX;
+                },
+
+                /**
+                 * If the provided href is an anchor which resolves to an element on the
+                 * page, scroll to it.
+                 * @param  {String} href
+                 * @return {Boolean} - Was the href an anchor.
+                 */
+                scrollIfAnchor: function(href, pushToHistory) {
+                var match, rect, anchorOffset;
+
+                if(!this.ANCHOR_REGEX.test(href)) {
+                    return false;
+                }
+
+                match = document.getElementById(href.slice(1));
+
+                if(match) {
+                    rect = match.getBoundingClientRect();
+                    anchorOffset = window.pageYOffset + rect.top - this.getFixedOffset();
+                    window.scrollTo(window.pageXOffset, anchorOffset);
+
+                    // Add the state to history as-per normal anchor links
+                    if(HISTORY_SUPPORT && pushToHistory) {
+                    history.pushState({}, document.title, location.pathname + href);
+                    }
+                }
+
+                return !!match;
+                },
+
+                /**
+                 * Attempt to scroll to the current location's hash.
+                 */
+                scrollToCurrent: function() {
+                this.scrollIfAnchor(window.location.hash);
+                },
+
+                /**
+                 * If the click event's target was an anchor, fix the scroll position.
+                 */
+                delegateAnchors: function(e) {
+                var elem = e.target;
+
+                if(
+                    elem.nodeName === 'A' &&
+                    this.scrollIfAnchor(elem.getAttribute('href'), true)
+                ) {
+                    e.preventDefault();
+                }
+                }
+            };
+
+            window.addEventListener(
+                'DOMContentLoaded', anchorScrolls.init.bind(anchorScrolls)
+            );
+            })(window.document, window.history, window.location);
+        </script>
+
         {% for product in products %}
         <div class="prodContainer" id="Product{{ product[0] }}">
-            <div class="image">
-                <img src="/{{ product[8] }}" alt="" srcset="" style="height: 100% !important;">
+
+            <div class="prodImage">
+                {% if product[8] != None %}
+                    <img src="/{{ product[8] }}" alt="" srcset="" style="height: 100%;">
+                {% endif %}
             </div>
             <div class="left">
                 <b id="heading" style="mix-blend-mode: exclusion;">Available at:</b> <p style="mix-blend-mode: exclusion;" class="maplink" id="hoverer">{{ product[6] }}. <a href="https://www.google.com/maps/search/{{ product[6] }}" id="hoverer">Visit now.</a></p>
@@ -140,14 +225,46 @@ List of medical appliances
                 </div>
                 <h1 class="prodtitle" style="margin-top: 1em; margin-bottom: 0 !important; mix-blend-mode: exclusion; font-family: 'favoritextb';">{{ product[1] }}</h1>
             </div>
+            <hr>
             <div class="right" style="height: 100% !important;">
                 <button class="get" id="getbtn" onclick="getConfirmation();"><h5 style="padding: 0.2em 0; margin: auto;  font-size: 2.2em; ">Get Now</p></button>
-                <p style="text-align: center; padding: 0.5em 0em 2.3em 0 !important; mix-blend-mode: exclusion; color: rgb(255, 255, 255);"><i>Listed by <b>{{ product[2] }}</b></i></p>
+                <p style="text-align: center;  mix-blend-mode: exclusion; color: rgb(255, 255, 255);"><i>Listed by <b>{{ product[2] }}</b></i></p>
                 <p style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: exclusion; color: rgb(255, 255, 255); margin-bottom: 0.5em !important;">Have the latest information?<br><a href="/edit/{{ product[0] }}" class="asdf" style="text-decoration: underline; color: rgb(231, 205, 255) !important;">Make an edit</a></p>
                 <!-- <li class="nav-item text-white" style="margin: 0 0.5em;"><a id="sharebtn" class="nav-link a2a_dd" href="https://www.addtoany.com/share">Share</a></li> -->
                 <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')" style="margin-top: 3em; margin: auto !important; padding: 0.2em 0.5em; border: 3px solid rgb(255, 255, 255); mix-blend-mode: exclusion; height: max-content; width: auto; text-align: center !important;"><h6 class="contactp" href="https://www.addtoany.com/share" data-a2a-url="http://127.0.0.1:5000/#Product{{ product[0] }}" style="margin: 0 0em !important; color: rgb(255, 255, 255); mix-blend-mode: exclusion !important; display: block; font-family: 'favoritextb'; font-size: 1.8em;">Share Product</h6></div>
-            </div>
+                <!--<p id="share">Share</p>-->
+                <script>
+                    function share() {
+                        if (navigator.share) {
+                            navigator
+                            .share({
+                                title: "Share this product",
+                                text: "Web development tutorial blogs",
+                                url: "http://127.0.0.1:5000/#Product{{ product[0] }}"
+                            })
+                            .then(() => console.log("thanks for share"))
+                            .catch(error => console.log("error", error));
+                        }
+                    };
 
+                    document.getElementById("share").addEventListener("click", share());
+                </script>
+<!--                 <script>
+                    var share = e => {
+                    if (navigator.share) {
+                        navigator
+                        .share({
+                            title: "Share this product",
+                            text: "Web development tutorial blogs",
+                            url: "http://127.0.0.1:5000/#Product{{ product[0] }}"
+                        })
+                        .then(() => console.log("thanks for share"))
+                        .catch(error => console.log("error", error));
+                    }
+                    };
+                    document.getElementById("share").addEventListener("click", share);
+                </script> -->
+            </div>
         </div>
         {% endfor %}
     </div>
