@@ -71,9 +71,9 @@ def search():
         nonelist = []
         return render_template('search.html', rows=nonelist)
     else:
-        # print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
+        print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
         query = request.form.get("query")
-        # print(query)
+        print(query)
         rows = db.execute(
             "SELECT * FROM products WHERE p_name LIKE '%'||?||'%'", (query))
         print(rows)
