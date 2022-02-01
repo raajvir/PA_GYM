@@ -10,21 +10,15 @@ List your product
     <form action="/add" method="post" style="padding: 2em; font-family: 'favorit';" enctype="multipart/form-data">
         <input type="text" id="p_name" name="p_name" placeholder="Oxygen Contrator 5L" style="font-size: 2em; font-family: 'favoritextb';"><br>
         <small>Available at:</small><br>
-        <input type="text" name="location" id="location" placeholder="4558 Briarwood Road, Blue Eye, MO, Missouri, 6561" style="margin-bottom: 1em !important; width: 80%;"> <span style="color: red"
-        >*</span><br>
+        <input type="text" name="location" id="location" placeholder="4558 Briarwood Road, Blue Eye, MO, Missouri, 6561" style="margin-bottom: 1em !important; width: 80%;"><br>
         <small>Contact</small><br>
         <div class="form-group">
-            <label for="name">Name:  <span style="color: red"
-                >*</span></label><input name="seller_name" id="seller_name" type="text" placeholder="John Doe"><br>
-            <label for="phone">Phone Number (+91):  <span style="color: red"
-                >*</span></label><input name="sellerphone" id="seller_phone" type="text" class="form-control" data-inputmask="'alias': 'phonebe'"><br>
-            <label for="email">Email Address <span style="color: red"
-                >*</span></label><input id="seller_email" name="seller_email" type="email" placeholder="johndoe@google.com"><br><br>
-            <label for="units">Units In stock <span style="color: red"
-                >*</span></label><input id="units" name="units" type="number" placeholder="12">
+            <label for="name">Name: </label><input name="seller_name" id="seller_name" type="text" placeholder="John Doe"><br>
+            <label for="phone">Phone Number (+91): </label><input name="sellerphone" id="seller_phone" type="text" class="form-control" data-inputmask="'alias': 'phonebe'"><br>
+            <label for="email">Email Address</label><input id="seller_email" name="seller_email" type="email" placeholder="johndoe@google.com"><br><br>
+            <label for="units">Units In stock</label><input id="units" name="units" type="number" placeholder="12">
         </div>
-        <label for="file">Image required <span style="color: red"
-            >*</span></label>
+        <label for="file" style="color: red;">Image required *</label>
         <input type="file" id="img" name="img" accept="image/*" oninput="filesize(this);"><br><br>
         <button id="submit" type="submit">Confirm Listing</button>
     </form>

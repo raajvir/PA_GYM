@@ -73,9 +73,11 @@ def search():
     else:
         print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
         query = request.form.get("query")
-        print(query)
+        # print(query)
         rows = db.execute(
-            "SELECT * FROM products WHERE p_name LIKE '%'||?||'%'", (query))
+            "SELECT * FROM products WHERE p_name LIKE '%"+query+"%' OR seller_name LIKE '%"+query+"%'")
+        # rows = db.execute(
+        #     "SELECT * FROM products WHERE p_name LIKE '%'||?||'%'", (query))
         print(rows)
         print(rows[0])
         res = list((rows[0]).values())[0]
