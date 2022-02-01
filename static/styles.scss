@@ -124,9 +124,10 @@ ul.nav li a:active {
 #searchbar {
   width: calc(100vw - 5em);
   margin-left: 2em;
-  background-color: black;
-  .searcher {
-    width: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  input {
+    width: 100% !important;
+    display: inline-block;
   }
 }
 

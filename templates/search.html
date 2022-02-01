@@ -8,52 +8,73 @@ Search list of medical appliances
 
 <!-- <h2 style="color: black; font-size: 3rem; text-align: center; margin-top: 12rem;">Feature under development!</h2>
 <h3 style="color: black; font-size: 1rem; text-align: center; margin-bottom: 6rem;">We will notify you when this feature is operational.</h3> -->
-    <br>
-    <form action="/search" method="post" id="searchbar">
-            <input type="text" placeholder="Search" name="query" id="query">
-            <button id="submit" type="submit" style="display: inline; width: 10%;" id="searchconfirm">Search</button>
-    </form>
-    <h2 style="color: black; margin-left: 0.8em;">Results:</h2>
-    
-    
-    {% for product in products %}
-    <div class="prodContainer" id="p_{{ product[0] }}">
-        <div class="prodImage">
-            {% if product[8] != None %}
-                <img src="/{{ product[8] }}" alt="" srcset="" style="height: 100%;">
-            {% endif %}
-        </div>
-        <div class="left">
-            <b id="heading" style="mix-blend-mode: exclusion;">Available at:</b> <p style="mix-blend-mode: exclusion;" class="maplink" id="hoverer">{{ product[6] }}. <a href="https://www.google.com/maps/search/{{ product[6] }}" id="hoverer">Visit now.</a></p>
-                
-                <script type = "text/javascript">
-                    function getConfirmation() {
-                        var retVal = confirm("We hope the product helps you gain a better health! But do keep in mind that GetYourMed does not endorse nor is it affliated to any of the listed products or its suppliers, and therefore will not be responsible for any damage caused by this communication that ensues. \n\nSo, proceed with caution at your own risk, and Good Luck! 🤞");
-                        if( retVal == true ) {
-                            window.open('tel:{{ product[4] }}')
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                </script> 
-                <div class="stock" style="top: 0; display: flex;background-color: rgb(255, 255, 255); width: max-content; padding: 0.3em; padding-right: 1em !important; height: 5em; font-family: 'favorit' !important;">
-                <span><big style="position: relative; font-size: 4.5em;  height: 4em; bottom:0.2em !important;">{{ product[3] }}</big></span>
-                <div class="23" style="margin-left: 0.4em !important;display: flex; flex-direction: column; height: 3em; font-family: 'favoritext';">
-                    <h6 style="display: block; margin-bottom: 0 !important; font-size: 1.8em;">units in stock</h6>
-                    <small style="font-size: 1.2em; font-family: 'favoritextb'; margin-top: 0.2em;">Last checked @ {{ product[7] }}</small>
-                </div>
-            </div>
-            <h1 class="prodtitle" style="margin-top: 1em; margin-bottom: 0 !important; mix-blend-mode: exclusion; font-family: 'favoritextb';">{{ product[1] }}</h1>
-        </div>
-        <div class="right" style="height: 100% !important;">
-            <button class="get" id="getbtn" onclick="getConfirmation();"><h5 style="padding: 0.2em 0; margin: auto;  font-size: 2.2em; ">Get Now</p></button>
-            <p style="text-align: center; padding: 0.5em 0em 2.3em 0 !important; mix-blend-mode: exclusion; color: rgb(255, 255, 255);"><i>Listed by <b>{{ product[2] }}</b></i></p>
-            <p style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: exclusion; color: rgb(255, 255, 255); margin-bottom: 0.5em !important;">Have the latest information?<br><a href="/edit/{{ product[0] }}" class="asdf" style="text-decoration: underline; color: rgb(231, 205, 255) !important;">Make an edit</a></p>
-            <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')" style="margin-top: 3em; margin: auto !important; padding: 0.2em 0.5em; border: 3px solid rgb(255, 255, 255); mix-blend-mode: exclusion; height: max-content; width: auto; text-align: center !important;"><h6 class="contactp" href="https://www.addtoany.com/share" data-a2a-url="http://127.0.0.1:5000/#Product{{ product[0] }}" style="margin: 0 0em !important; color: rgb(255, 255, 255); mix-blend-mode: exclusion !important; display: block; font-family: 'favoritextb'; font-size: 1.8em;">Share Product</h6></div>
-        </div>
+<br>
+<form action="/search" method="post" id="searchbar">
+    <input type="text" placeholder="Search" name="query" id="query" style="margin: 0.2rem; width: 100%; padding: 0.4rem;">
+    <button id="submit" type="submit" style="display: inline; width: 10%; margin: 0.2rem;" id="searchconfirm">Search</button>
+</form>
+<h2 style="color: black; margin-left: 1.8rem;">Results:</h2>
 
+
+{% for product in products %}
+<div class="prodContainer" id="p_{{ product[0] }}">
+    <div class="prodImage">
+        {% if product[8] != None %}
+        <img src="/{{ product[8] }}" alt="" srcset="" style="height: 100%;">
+        {% endif %}
     </div>
-    {% endfor %}
+    <div class="left">
+        <b id="heading" style="mix-blend-mode: exclusion;">Available at:</b>
+        <p style="mix-blend-mode: exclusion;" class="maplink" id="hoverer">{{ product[6] }}. <a
+                href="https://www.google.com/maps/search/{{ product[6] }}" id="hoverer">Visit now.</a></p>
+
+        <script type="text/javascript">
+            function getConfirmation() {
+                var retVal = confirm("We hope the product helps you gain a better health! But do keep in mind that GetYourMed does not endorse nor is it affliated to any of the listed products or its suppliers, and therefore will not be responsible for any damage caused by this communication that ensues. \n\nSo, proceed with caution at your own risk, and Good Luck! 🤞");
+                if (retVal == true) {
+                    window.open('tel:{{ product[4] }}')
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
+        <div class="stock"
+            style="top: 0; display: flex;background-color: rgb(255, 255, 255); width: max-content; padding: 0.3em; padding-right: 1em !important; height: 5em; font-family: 'favorit' !important;">
+            <span><big style="position: relative; font-size: 4.5em;  height: 4em; bottom:0.2em !important;">{{
+                    product[3] }}</big></span>
+            <div class="23"
+                style="margin-left: 0.4em !important;display: flex; flex-direction: column; height: 3em; font-family: 'favoritext';">
+                <h6 style="display: block; margin-bottom: 0 !important; font-size: 1.8em;">units in stock</h6>
+                <small style="font-size: 1.2em; font-family: 'favoritextb'; margin-top: 0.2em;">Last checked @ {{
+                    product[7] }}</small>
+            </div>
+        </div>
+        <h1 class="prodtitle"
+            style="margin-top: 1em; margin-bottom: 0 !important; mix-blend-mode: exclusion; font-family: 'favoritextb';">
+            {{ product[1] }}</h1>
+    </div>
+    <div class="right" style="height: 100% !important;">
+        <button class="get" id="getbtn" onclick="getConfirmation();">
+            <h5 style="padding: 0.2em 0; margin: auto;  font-size: 2.2em; ">Get Now</p>
+        </button>
+        <p
+            style="text-align: center; padding: 0.5em 0em 2.3em 0 !important; mix-blend-mode: exclusion; color: rgb(255, 255, 255);">
+            <i>Listed by <b>{{ product[2] }}</b></i></p>
+        <p
+            style="width: max-content; margin:auto !important; display: block; text-align: center; mix-blend-mode: exclusion; color: rgb(255, 255, 255); margin-bottom: 0.5em !important;">
+            Have the latest information?<br><a href="/edit/{{ product[0] }}" class="asdf"
+                style="text-decoration: underline; color: rgb(231, 205, 255) !important;">Make an edit</a></p>
+        <div class="contact a2a_dd" onlclick="window.open('tel:{{ product[4] }}')"
+            style="margin-top: 3em; margin: auto !important; padding: 0.2em 0.5em; border: 3px solid rgb(255, 255, 255); mix-blend-mode: exclusion; height: max-content; width: auto; text-align: center !important;">
+            <h6 class="contactp" href="https://www.addtoany.com/share"
+                data-a2a-url="http://127.0.0.1:5000/#Product{{ product[0] }}"
+                style="margin: 0 0em !important; color: rgb(255, 255, 255); mix-blend-mode: exclusion !important; display: block; font-family: 'favoritextb'; font-size: 1.8em;">
+                Share Product</h6>
+        </div>
+    </div>
+
+</div>
+{% endfor %}
 
 {% endblock %}
