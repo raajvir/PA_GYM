@@ -91,6 +91,32 @@ def search():
         return render_template("search.html", products=outList)
 
 
+@app.route('/cc', methods=['GET', 'POST'])
+def cc():
+    if request.method == 'GET':
+        nonelist = []
+        return render_template('cc.html', rows=nonelist)
+    else:
+        # print("Asdfasdfasdfasdfakjl23o4u123lo4iu oirh12348729p8471234\n\nn\\nn\\n\n\n")
+        query = request.form.get("query")
+        # print(query)
+        rows = db.execute(
+            "SELECT * FROM products WHERE cc = :query", query=query)
+        # rows = db.execute(
+        #     "SELECT * FROM products WHERE p_name LIKE '%'||?||'%'", (query))
+        print(rows)
+        print(rows[0])
+        res = list((rows[0]).values())[0]
+        print(res)
+
+        iter = 0
+        outList = []
+        for dict in rows:
+            outList.append(list(dict.values()))
+        print(outList)
+        return render_template("cc.html", products=outList)
+
+
 @app.route("/edit/<int:id_slug>", methods=["GET", "POST"])
 def edit(id_slug):
     """Editing product info"""
@@ -132,6 +158,10 @@ def edit(id_slug):
             seller_email = str(request.form.get("seller_email"))
         except:
             seller_email = rowx.get('seller_email')
+        try:
+            cc = str(request.form.get("cc"))
+        except:
+            cc = rowx.get('cc')
         print("asdfa;sdlfkjas;dlkfja;dlfjas;ldfkja;lf")
         nxtime = time.ctime(time.time())
         nxtime = nxtime[4:]
@@ -139,8 +169,8 @@ def edit(id_slug):
 
         print(p_name, seller_name, units, seller_email,
               location, id_slug, seller_phone, nxtime)
-        db.execute("UPDATE products SET p_name = :p_name, seller_name = :seller_name, units = :units, seller_phone = :seller_phone, seller_email = :seller_email, location = :location, time = :time WHERE productid = :prodid",
-                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=nxtime, prodid=id_slug)
+        db.execute("UPDATE products SET p_name = :p_name, seller_name = :seller_name, units = :units, seller_phone = :seller_phone, seller_email = :seller_email, location = :location, time = :time, cc = :cc WHERE productid = :prodid",
+                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=nxtime, cc=cc, prodid=id_slug)
         # db.execute("UPDATE products SET units = :units WHERE productid = :prodid", units=units, prodid=prodid)
         return redirect("/")
 
@@ -167,6 +197,7 @@ def add():
         # img_src = img_src.replace("uploads\", "uploads/")
         p_name = str(request.form.get("p_name"))
         seller_name = str(request.form.get("seller_name"))
+        cc = int(request.form.get('cc'))
         print(request.form.get('units'))
         units = int(request.form.get("units"))
         seller_phone = (request.form.get("seller_phone"))
@@ -175,8 +206,8 @@ def add():
         # product_desc = str(request.form.get("product_desc"))
 
         # add time remove product desc in db
-        db.execute("INSERT INTO products(p_name,seller_name,units,seller_phone,seller_email, location, time, img_src) VALUES (:p_name, :seller_name, :units,:seller_phone, :seller_email,:location, :time, :img_src)",
-                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=ntime, img_src=img_src)
+        db.execute("INSERT INTO products(p_name,seller_name,units,seller_phone,seller_email, location, time, img_src, cc) VALUES (:p_name, :seller_name, :units,:seller_phone, :seller_email,:location, :time, :img_src, :cc)",
+                   p_name=p_name, seller_name=seller_name, units=units, seller_email=seller_email, location=location, seller_phone=seller_phone, time=ntime, img_src=img_src, cc=cc)
 
         return redirect("/")
 

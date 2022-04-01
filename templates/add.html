@@ -26,6 +26,8 @@ List your product
         <label for="file">Image required <span style="color: red"
             >*</span></label>
         <input type="file" id="img" name="img" accept="image/*" oninput="filesize(this);"><br><br>
+        <small>Community code:</small><br>
+        <input type="number" name="cc" id="cc" placeholder="6561" style="margin-bottom: 1em !important; width: 80%;" value="{{product[7]}}"><br>
         <button id="submit" type="submit">Confirm Listing</button>
     </form>
     <script>

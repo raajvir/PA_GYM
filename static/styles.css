@@ -143,11 +143,12 @@ ul.nav li a:active {
 #searchbar {
   width: calc(100vw - 5em);
   margin-left: 2em;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
 }
 
-#searchbar .searcher {
-  width: 100%;
+#searchbar input {
+  width: 100% !important;
+  display: inline-block;
 }
 
 ul.nav li.active a {
@@ -760,6 +761,7 @@ html {
   height: -webkit-max-content !important;
   height: -moz-max-content !important;
   height: max-content !important;
+  background-color: rgba(25, 25, 25, 0.651);
 }
 
 /* @font-face {
