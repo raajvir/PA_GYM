@@ -115,7 +115,7 @@ List of medical appliances
             })(window.document, window.history, window.location);
         </script>
 
-        {% for product in products %}
+        {% for product in products[::-1] %}
         <div class="prodContainer" id="Product{{ product[0] }}">
 
             <div class="prodImage">

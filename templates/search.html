@@ -16,7 +16,7 @@ Search list of medical appliances
 <h2 style="color: black; margin-left: 1.8rem;">Results:</h2>
 
 
-{% for product in products %}
+{% for product in products[::-1] %}
 <div class="prodContainer" id="p_{{ product[0] }}">
     <div class="prodImage">
         {% if product[8] != None %}
