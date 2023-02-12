@@ -268,44 +268,29 @@ ul.nav li.active a {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  background-color: #545454;
+  background-color: #A4DBDE;
 }
 
-.prodContainer .prodImage {
-  display: inline-block;
-  min-width: 0 !important;
-  max-width: 30%;
+.prodContainer:nth-child(odd) {
+  background-color: #EFCD61;
 }
 
-.prodContainer .prodImage img {
-  display: inline-block;
-  width: calc(100% - 1em) !important;
-  min-width: 0 !important;
-}
-
-.prodContainer .left {
-  max-width: 80%;
-  min-width: 50%;
-}
-
-.prodContainer .right {
-  max-width: 20%;
-  margin-left: auto;
-  height: 100%;
+.prodContainer .prodTitle {
+  font-family: "heading";
+  font-style: bold;
 }
 
 .prodContainer #heading {
   font-size: 1.5em;
-  font-family: "favoritext";
 }
 
 .prodContainer .maplink {
   font-size: 1.3em;
-  font-family: "reproR";
+  font-family: "body";
 }
 
 .prodContainer .maplink a {
-  font-family: "reproM";
+  font-family: "body";
   text-decoration: underline;
 }
 
@@ -316,24 +301,19 @@ ul.nav li.active a {
 .prodContainer .stock {
   background-color: white;
   color: black;
-  font-family: "favorit";
+  font-family: "body";
   isolation: isolate;
   background-color: white;
   mix-blend-mode: exclusion;
   z-index: 99;
 }
 
-.prodContainer hr {
-  display: none;
-}
-
 .prodContainer p {
-  font-family: "reproR" !important;
-  padding: 0.5em 0em 2.3em 0;
+  font-family: "body" !important;
 }
 
 .prodContainer .get {
-  font-family: "favoritextb" !important;
+  font-family: "heading" !important;
   height: 3.8em;
 }
 
@@ -352,17 +332,26 @@ ul.nav li.active a {
       margin: 0%;
       width: 20vw;
   } */
+.left {
+  width: 80%;
+}
+
+.right {
+  width: 20%;
+  height: 100%;
+}
+
 a {
   bottom: 0;
   color: unset !important;
 }
 
 .hero h1 {
-  font-family: "favoritextb";
+  font-family: "heading";
   text-align: left;
   padding: 0.4em;
   padding-bottom: 0.2em !important;
-  font-size: 4.6em;
+  font-size: 4.6em !important;
 }
 
 .hero #img1 {
@@ -385,7 +374,8 @@ a {
 }
 
 .hero h5 {
-  font-family: "socialL";
+  font-family: "heading";
+  font-style: italic;
   font-size: 1.8em;
   width: 80%;
   padding-left: 1em;
@@ -397,11 +387,11 @@ a {
 }
 
 .hero h5 b {
-  font-family: "social";
+  font-family: "heading";
 }
 
 .hero h5 g {
-  font-family: "favoritext";
+  font-family: "heading";
 }
 
 .hero p {
@@ -415,7 +405,7 @@ a {
 
 .hero .box {
   font-size: 1.5em;
-  font-family: "favoritextb";
+  font-family: "heading";
   color: white !important;
   background-color: black !important;
   margin-left: 1em;
@@ -500,7 +490,7 @@ h2 {
   padding: 0 !important;
   font-size: 2.5em !important;
   vertical-align: text-top;
-  font-family: favoritext !important;
+  font-family: heading !important;
   height: 1.25em;
 }
 
@@ -508,7 +498,7 @@ h2 {
     color: white !important;
   } */
 #zingbrand {
-  font-family: "favorit";
+  font-family: "body";
   color: white;
 }
 
@@ -599,7 +589,7 @@ footer .content .desc {
 }
 
 footer .content .desc ext {
-  font-family: "favoritext";
+  font-family: "heading";
   font-weight: bolder;
 }
 
@@ -607,7 +597,7 @@ footer .content .desc .u_left {
   font-size: 1.4em;
   color: white;
   width: 50%;
-  font-family: "favorit";
+  font-family: "body";
 }
 
 footer .content .desc .u_left a {
@@ -625,7 +615,7 @@ footer .content .desc .u_right {
 }
 
 footer .content .desc .u_right liste {
-  font-family: "favorit";
+  font-family: "body";
   font-size: 1.2em !important;
 }
 
@@ -670,7 +660,7 @@ footer .content .logos .b_right {
           justify-content: right;
   right: 0;
   font-size: 1.5em;
-  font-family: "favoritextb";
+  font-family: "heading";
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -761,14 +751,13 @@ body {
   height: 100% !important;
   width: 100vw !important;
   overflow-x: hidden;
-  background-color: white;
+  background-color: black;
 }
 
 html {
   height: -webkit-max-content !important;
   height: -moz-max-content !important;
   height: max-content !important;
-  background-color: rgba(255, 255, 255, 0.651);
 }
 
 /* @font-face {
@@ -853,4 +842,4 @@ ul.nav li.active a {
 
 
  */
-/*# sourceMappingURL=styles.css.map */
+/*# sourceMappingURL=tst.css.map */
